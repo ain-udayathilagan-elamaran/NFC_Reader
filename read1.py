@@ -47,20 +47,20 @@ def read_nfc():
 	if state:
 		return lines
 
-try:
-	while True:
-		time.sleep(.2)
-		state,lines=nfc_raw()
-		if state:
-			myLines=lines.decode('utf-8')
-			buffer=[]
-			for line in myLines.splitlines():
-				line_content=line.split()
-				if line_content[0] =='UID':
-					Uidd=line_content[2:]
-					jsondata='{{"UUID_Len":{},"UUID":{},"Time":"{}"}}'.format(len(Uidd),Uidd,time.strftime("%Y-%m-%dT%X"))
-					jsondata=jsondata.replace("'",'"')
-					MQtt_Publisher(Msg_To_Publish=jsondata,EdgeID=Device_ID)
-except KeyboardInterrupt:
-        pass
-    
+
+while True:
+    time.sleep(.2)
+    try:
+        state,lines=nfc_raw()
+        if state:
+            myLines=lines.decode('utf-8')
+            buffer=[]
+            for line in myLines.splitlines():
+                line_content=line.split()
+                if line_content[0] =='UID':
+                    Uidd=line_content[2:]
+                    jsondata='{{"UUID_Len":{},"UUID":{},"Time":"{}"}}'.format(len(Uidd),Uidd,time.strftime("%Y-%m-%dT%X"))
+                    jsondata=jsondata.replace("'",'"')
+                    MQtt_Publisher(Msg_To_Publish=jsondata,EdgeID=Device_ID)
+	except Exception as ef:
+     	print(ef)
