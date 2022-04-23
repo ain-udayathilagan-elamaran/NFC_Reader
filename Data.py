@@ -1,10 +1,12 @@
 Details={
     "Main_Location":"/home/pi/NFC",
-    "username_mqtt":"innv3-ncr-hdfc",
-    "password_mqtt":"Rs502a*mcJ9z0Z",
-    "mqtt_broker":"broker.hivemq.com",
+    "username_mqtt":"iocld-mqtt-admin",
+    "password_mqtt":"admin123",
+    "mqtt_broker":"192.168.1.222",
     "mqtt_port":1883,
     "Publish_Topic":"AI/IIOT/IOCLD/NFC/",
     "HeartBeat_Topic_Suffix":"/STATUS",
-    "Data_Topic_Suffix":"/DATA"
+    "Data_Topic_Suffix":"/DATA",
+    "HB_time":60,
+    "Main_Loop_Interval":0.2
 }

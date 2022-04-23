@@ -1,0 +1,12 @@
+[Unit]
+Description=Read The NFC Card
+
+[Service]
+WorkingDirectory=/home/pi/NFC
+Environment="TERM=xterm"
+ExecStart=/home/pi/NFC/NFC_Reader
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+
